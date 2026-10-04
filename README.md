@@ -28,30 +28,37 @@ npm run dev
 
 ## Scripts
 
-| Command             | Description                                            |
-| ------------------- | ------------------------------------------------------ |
-| `npm run dev`       | Start the dev server                                   |
-| `npm run build`     | Production build + static prerender into `dist/client` |
-| `npm run preview`   | Serve the production build locally                     |
-| `npm run lint`      | ESLint over the project                                |
-| `npm run typecheck` | `tsc --noEmit`                                         |
-| `npm run format`    | Prettier write                                         |
+| Command             | Description                                               |
+| ------------------- | --------------------------------------------------------- |
+| `npm run dev`       | Start the dev server                                      |
+| `npm run build`     | Production build + static prerender into `.output/public` |
+| `npm run preview`   | Serve the production build locally                        |
+| `npm run lint`      | ESLint over the project                                   |
+| `npm run typecheck` | `tsc --noEmit`                                            |
+| `npm run format`    | Prettier write                                            |
 
 ## Deployment
 
-Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and
-publishes `dist/client` to GitHub Pages.
+Live at **<https://arkisengineering.com>**, served by GitHub Pages.
 
-The workflow sets `BASE_PATH` to `/<repo-name>/` so that asset URLs resolve from
-the project's subpath. To preview the same output locally:
+Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and
+publishes `.output/public` (the prerendered HTML plus hashed client assets).
+
+The site is served from the domain root, so the workflow builds with
+`BASE_PATH=/`. The domain itself lives in `public/CNAME`, which Vite copies into
+the published artifact — GitHub Pages needs that file to keep serving the custom
+domain.
+
+The workflow warns (but does not fail) when `public/CNAME` does not resolve to
+GitHub Pages. To serve a `*.github.io` project page instead, set
+`BASE_PATH=/<repo-name>/` in the workflow.
+
+To reproduce the production output locally:
 
 ```sh
-BASE_PATH=/arkis-engineering/ npm run build
+npm run build
 npm run preview
 ```
-
-To add a custom domain later, add a `public/CNAME` file and set `BASE_PATH=/` in
-the workflow.
 
 ### Adding routes
 

@@ -11,13 +11,14 @@ manufacturing company in Ballabgarh, Faridabad, India.
 - React 19, TypeScript (strict), Tailwind CSS 4
 - shadcn/ui components in `src/components/ui`
 - Package manager: npm
-- Hosting: GitHub Pages (`BASE_PATH` is set in CI to `/<repo>/`)
+- Hosting: GitHub Pages at `arkisengineering.com` (custom domain via
+  `public/CNAME`, so `BASE_PATH` is `/`)
 
 ## Commands
 
 ```sh
 npm run dev        # dev server
-npm run build      # production build + static prerender into dist/client
+npm run build      # production build + static prerender into .output/public
 npm run preview    # preview the production build
 npm run lint       # eslint
 npm run typecheck  # tsc --noEmit

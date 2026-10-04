@@ -36,11 +36,29 @@ jobs:
         run: npm ci
 
       - name: Build
-        # Project Pages are served from https://<user>.github.io/<repo>/, so every
-        # asset URL has to be prefixed with that subpath.
+        # public/CNAME sets a custom domain, which is served from the site root, so
+        # assets are root-relative. For a project page instead, set this to
+        # /${{ github.event.repository.name }}/.
         env:
-          BASE_PATH: /${{ github.event.repository.name }}/
+          BASE_PATH: "/"
         run: npm run build
+
+      # Fails the build early if the custom domain in public/CNAME has no matching
+      # DNS, rather than deploying a site that silently 404s.
+      - name: Verify custom domain DNS
+        if: hashFiles('public/CNAME') != ''
+        run: |
+          domain="$(tr -d '\r\n' < public/CNAME)"
+          echo "Checking DNS for $domain"
+          for ip in 185.199.108.153 185.199.109.153 185.199.110.153 185.199.111.153; do
+            if host -t A "$domain" 2>/dev/null | grep -q "$ip"; then
+              echo "OK: $domain resolves to GitHub Pages ($ip)"
+              exit 0
+            fi
+          done
+          echo "::warning::$domain does not resolve to GitHub Pages yet."
+          echo "Add A records for 185.199.108.153, 185.199.109.153, 185.199.110.153 and"
+          echo "185.199.111.153 at your DNS provider, then re-run this workflow."
 
       - uses: actions/configure-pages@v5
 
