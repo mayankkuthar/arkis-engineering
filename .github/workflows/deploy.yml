@@ -26,6 +26,12 @@ jobs:
           node-version: 22
           cache: npm
 
+      # `npm ci` validates package-lock.json strictly, and its resolution rules
+      # change between npm majors. Pinning to the version that wrote the lockfile
+      # keeps CI from failing on an unrelated npm upgrade.
+      - name: Pin npm
+        run: npm install -g npm@10.7.0
+
       - name: Install dependencies
         run: npm ci
 
