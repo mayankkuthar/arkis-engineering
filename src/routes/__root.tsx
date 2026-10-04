@@ -34,7 +34,9 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+// `error` is typed as unknown by ErrorComponentProps in @tanstack/react-router
+// 1.170, and strictFunctionTypes rejects a narrower parameter type here.
+function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
 
