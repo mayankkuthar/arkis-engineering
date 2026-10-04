@@ -3,6 +3,9 @@
   "private": true,
   "sideEffects": false,
   "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build && node scripts/postbuild.mjs",
@@ -12,7 +15,6 @@
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit"
   },
-  "overrides": {},
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
