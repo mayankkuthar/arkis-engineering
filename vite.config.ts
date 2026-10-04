@@ -31,7 +31,12 @@ export default defineConfig({
       },
     }),
     react(),
-    nitro(),
+    // Pin the preset instead of letting Nitro infer one. Vercel exports VERCEL=1,
+    // which makes Nitro switch to its Vercel Build Output API preset and write
+    // .vercel/output/{static,functions} instead of .output/public. This site is
+    // fully prerendered and uses no server functions, so it deploys as plain
+    // static files to both GitHub Pages and Vercel from one identical artifact.
+    nitro({ preset: "node-server" }),
   ],
   // Vite 8 resolves tsconfig `paths` natively, so no vite-tsconfig-paths plugin.
   resolve: {
