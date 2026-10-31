@@ -1,7 +1,10 @@
-import conveyorImage from "@/assets/conveyor-system.jpg";
-import screwImage from "@/assets/screw-conveyor.jpg";
-import environmentImage from "@/assets/environmental-systems.jpg";
-import workshopImage from "@/assets/industrial-workshop.jpg";
+import beltConveyorImage from "@/assets/photos/outdoor-belt-conveyor.jpg";
+import fabricationDrillingImage from "@/assets/photos/fabrication-drilling.jpg";
+import baleFeederImage from "@/assets/photos/bale-feeder-hopper.jpg";
+import strawShredderImage from "@/assets/photos/shredder-straw-bales.jpg";
+import shredderLineImage from "@/assets/photos/shredder-blue-conveyors.jpg";
+import cycloneImage from "@/assets/photos/incline-conveyor-cyclone.jpg";
+import vRollerFramesImage from "@/assets/photos/v-roller-frames-fabrication.jpg";
 
 export const contact = {
   primaryPhone: "+91 919 404 3006",
@@ -11,7 +14,10 @@ export const contact = {
     "Plot No. 30, Harfala Road, Near Gas Company, Seekri Industrial Area, Sikri, Ballabgarh, Faridabad, Haryana – 121004, India.",
   whatsapp:
     "https://wa.me/9194043006?text=Hello%20Arkis%20Engineering%2C%20I%20would%20like%20to%20enquire%20about%20your%20industrial%20machinery%20and%20engineering%20solutions.",
-  map: "https://www.google.com/maps/search/?api=1&query=Plot+No.+30+Harfala+Road+Near+Gas+Company+Seekri+Industrial+Area+Sikri+Ballabgarh+Faridabad+Haryana+121004",
+  // Exact factory location supplied by the client.
+  geo: { latitude: 28.2769317, longitude: 77.2785908 },
+  map: "https://maps.google.com/maps?q=28.2769317%2C77.2785908&z=17&hl=en",
+  mapEmbed: "https://maps.google.com/maps?q=28.2769317%2C77.2785908&z=17&hl=en&output=embed",
 };
 
 export type Product = {
@@ -22,6 +28,8 @@ export type Product = {
   features: string[];
   applications?: string;
   image: string;
+  /** Describes what the photo actually shows (all photos are real ARKIS work). */
+  imageAlt: string;
 };
 export const products: Product[] = [
   {
@@ -37,7 +45,8 @@ export const products: Product[] = [
       "Low-friction, vibration-conscious, and energy-efficient design.",
     ],
     applications: "Bulk solids, aggregates, and packaged goods.",
-    image: conveyorImage,
+    image: beltConveyorImage,
+    imageAlt: "Belt conveyor running on red V-roller idlers, installed by ARKIS Engineering",
   },
   {
     slug: "screw-conveyors",
@@ -52,7 +61,8 @@ export const products: Product[] = [
       "Custom pitch and flight thickness options for abrasion resistance.",
     ],
     applications: "Powders, ash, grains, and granular materials.",
-    image: screwImage,
+    image: fabricationDrillingImage,
+    imageAlt: "ARKIS fabricator drilling a structural steel member in the workshop",
   },
   {
     slug: "debalers-auto-feeders",
@@ -66,7 +76,8 @@ export const products: Product[] = [
       "Designed to help reduce manual handling and plant bottlenecks.",
       "Heavy-gauge steel fabrication for continuous-duty applications.",
     ],
-    image: workshopImage,
+    image: baleFeederImage,
+    imageAlt: "Bale feeding hopper with conveyor beside stacked straw bales",
   },
   {
     slug: "agri-waste-recycling",
@@ -79,7 +90,8 @@ export const products: Product[] = [
       "Supports material handling and recycling workflows.",
       "Engineering consultation available for custom requirements.",
     ],
-    image: environmentImage,
+    image: strawShredderImage,
+    imageAlt: "ARKIS shredding line with feed conveyor next to agricultural straw bales",
   },
   {
     slug: "e-waste-recycling",
@@ -92,7 +104,8 @@ export const products: Product[] = [
       "Integrated material movement options.",
       "Fabricated for industrial operating environments.",
     ],
-    image: workshopImage,
+    image: shredderLineImage,
+    imageAlt: "Industrial shredder with blue feed and discharge conveyors built by ARKIS",
   },
   {
     slug: "dust-collection",
@@ -105,7 +118,8 @@ export const products: Product[] = [
       "Industrial ducting and collection integration.",
       "Fabrication tailored to project requirements.",
     ],
-    image: environmentImage,
+    image: cycloneImage,
+    imageAlt: "Incline belt conveyor with cyclone dust separator in an ARKIS installation",
   },
   {
     slug: "apcm",
@@ -119,7 +133,8 @@ export const products: Product[] = [
       "Fabricated equipment and supporting structures.",
       "Integration support from concept to commissioning.",
     ],
-    image: environmentImage,
+    image: cycloneImage,
+    imageAlt: "Cyclone separator and conveyor line at an ARKIS installation",
   },
   {
     slug: "fabrication-works",
@@ -131,7 +146,8 @@ export const products: Product[] = [
       "Machinery and industrial structure work.",
       "Project coordination and technical support.",
     ],
-    image: workshopImage,
+    image: vRollerFramesImage,
+    imageAlt: "V-roller conveyor frames being fabricated at the ARKIS workshop",
   },
 ];
 

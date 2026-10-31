@@ -3,7 +3,7 @@ import { ArrowRight, Factory, Leaf, Recycle, Settings, Truck, Wrench } from "luc
 import { Button } from "@/components/ui/button";
 import { CtaBand, PageHero } from "@/components/arkis-sections";
 import { meta } from "@/lib/site-data";
-import hero from "@/assets/industrial-workshop.jpg";
+import hero from "@/assets/photos/fabrication-drilling.jpg";
 export const Route = createFileRoute("/services")({
   head: () =>
     meta(

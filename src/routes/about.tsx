@@ -2,7 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Gauge, Lightbulb, ShieldCheck } from "lucide-react";
 import { CtaBand, Eyebrow, PageHero } from "@/components/arkis-sections";
 import { meta } from "@/lib/site-data";
-import hero from "@/assets/industrial-workshop.jpg";
+import hero from "@/assets/photos/factory-exterior.jpg";
+import certificate from "@/assets/photos/iso-9001-certificate.jpg";
 import portrait from "@/assets/ajay-veer-singh-portrait.png";
 export const Route = createFileRoute("/about")({
   head: () =>
@@ -67,6 +68,15 @@ function About() {
             <h2 className="text-2xl font-bold">Advanced Engineering. Sustainable Tomorrow.</h2>
             <p className="mt-4 leading-7 text-muted-foreground">
               Building Solutions, Delivering Trust.
+            </p>
+            <img
+              src={certificate}
+              alt="ISO 9001:2015 certificate awarded to ARKIS Engineering"
+              loading="lazy"
+              className="mt-6 w-full max-w-60 border border-border shadow-md"
+            />
+            <p className="mt-3 text-sm font-semibold text-primary">
+              ISO 9001:2015 certified quality management system
             </p>
           </div>
         </div>

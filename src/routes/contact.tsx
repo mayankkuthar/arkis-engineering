@@ -3,9 +3,9 @@ import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
-import { PageHero } from "@/components/arkis-sections";
+import { MapEmbed, PageHero } from "@/components/arkis-sections";
 import { contact, meta, products } from "@/lib/site-data";
-import hero from "@/assets/environmental-systems.jpg";
+import hero from "@/assets/photos/factory-exterior-road.jpg";
 const searchSchema = z.object({ interest: z.string().optional().catch(undefined) });
 const formSchema = z.object({
   name: z.string().trim().min(2, "Enter your full name").max(100),
@@ -148,6 +148,11 @@ function Contact() {
             </p>
           )}
         </form>
+      </section>
+      <section className="mx-auto max-w-7xl px-4 pb-20 sm:px-6">
+        <h2 className="text-2xl font-bold">Find Our Factory</h2>
+        <p className="mt-2 text-muted-foreground">{contact.address}</p>
+        <MapEmbed className="mt-6 h-[420px] border border-border" />
       </section>
     </>
   );

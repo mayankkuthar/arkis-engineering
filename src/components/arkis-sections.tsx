@@ -19,11 +19,7 @@ export function PageHero({
 }) {
   return (
     <section className="relative isolate min-h-[360px] overflow-hidden bg-forest">
-      <img
-        src={image}
-        alt="Industrial engineering illustration"
-        className="absolute inset-0 -z-20 h-full w-full object-cover"
-      />
+      <img src={image} alt="" className="absolute inset-0 -z-20 h-full w-full object-cover" />
       <div className="absolute inset-0 -z-10 bg-forest/80" />
       <div className="mx-auto flex min-h-[360px] max-w-7xl items-end px-4 pb-14 sm:px-6">
         <div className="max-w-3xl animate-rise">
@@ -41,15 +37,10 @@ export function ProductCard({ product }: { product: Product }) {
       <div className="relative aspect-[4/3] overflow-hidden">
         <img
           src={product.image}
-          alt={`${product.name} industrial illustration`}
+          alt={product.imageAlt}
           loading="lazy"
-          width={1408}
-          height={1008}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <span className="absolute bottom-0 left-0 bg-forest px-3 py-1 text-[10px] font-semibold uppercase text-primary-foreground">
-          Illustrative image
-        </span>
       </div>
       <div className="p-6">
         <h3 className="text-xl font-bold">{product.name}</h3>
@@ -113,5 +104,17 @@ export function WhatsAppButton({ label = "Enquire on WhatsApp" }: { label?: stri
         {label}
       </a>
     </Button>
+  );
+}
+export function MapEmbed({ className = "" }: { className?: string }) {
+  return (
+    <iframe
+      src={contact.mapEmbed}
+      title="ARKIS Engineering factory location on Google Maps"
+      loading="lazy"
+      referrerPolicy="no-referrer-when-downgrade"
+      allowFullScreen
+      className={`w-full border-0 ${className}`}
+    />
   );
 }

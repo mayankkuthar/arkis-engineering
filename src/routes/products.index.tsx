@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CtaBand, PageHero, ProductCard } from "@/components/arkis-sections";
 import { meta, products } from "@/lib/site-data";
-import hero from "@/assets/conveyor-system.jpg";
+import hero from "@/assets/photos/trough-belt-conveyor.jpg";
 export const Route = createFileRoute("/products/")({
   head: () =>
     meta(

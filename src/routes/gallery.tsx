@@ -4,41 +4,166 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { PageHero } from "@/components/arkis-sections";
 import { meta } from "@/lib/site-data";
-import workshop from "@/assets/industrial-workshop.jpg";
-import conveyor from "@/assets/conveyor-system.jpg";
-import screw from "@/assets/screw-conveyor.jpg";
-import environmental from "@/assets/environmental-systems.jpg";
 import brochure from "@/assets/arkis-brochure.png";
 import office from "@/assets/ajay-veer-singh-office.png";
+import facility from "@/assets/photos/factory-exterior.jpg";
+
+// Real project and facility photography supplied by the client.
+const photos = import.meta.glob<string>("../assets/photos/*.jpg", {
+  eager: true,
+  import: "default",
+});
+function photo(name: string) {
+  const src = photos[`../assets/photos/${name}.jpg`];
+  if (!src) throw new Error(`Missing gallery photo: ${name}`);
+  return src;
+}
+
 export const Route = createFileRoute("/gallery")({
   head: () =>
     meta(
-      "Engineering Gallery | ARKIS ENGINEERING",
-      "View ARKIS Engineering brand and company photography alongside illustrative machinery and industrial engineering visuals.",
+      "Project Gallery | ARKIS ENGINEERING",
+      "Photos of conveyors, shredding lines, feeders, V-rollers and fabrication work by ARKIS Engineering, Ballabgarh, Faridabad.",
       "/gallery",
     ),
   component: Gallery,
 });
-const images = [
+
+const CONVEYORS = "Conveyor Systems";
+const RECYCLING = "Recycling & Shredding Lines";
+const FEEDERS = "Debalers & Auto Feeders";
+const FABRICATION = "Fabrication Works";
+const FACILITY = "Our Facility";
+
+const images: { src: string; cat: string; caption: string }[] = [
   {
-    src: workshop,
-    cat: "Manufacturing Facility",
-    caption: "Industrial fabrication workshop — illustrative image",
+    src: photo("recycling-plant-conveyor-line"),
+    cat: RECYCLING,
+    caption: "Shredding plant with feed conveyors and control panels",
+  },
+  { src: facility, cat: FACILITY, caption: "ARKIS Engineering factory, Seekri, Ballabgarh" },
+  {
+    src: photo("fabrication-drilling"),
+    cat: FABRICATION,
+    caption: "Magnetic drilling on structural steel",
   },
   {
-    src: conveyor,
-    cat: "Conveyor Systems",
-    caption: "Belt conveyor and V-roller system — illustrative image",
+    src: photo("trough-belt-conveyor"),
+    cat: CONVEYORS,
+    caption: "Troughed belt conveyor with side guards",
   },
   {
-    src: screw,
-    cat: "Machinery & Equipment",
-    caption: "Screw conveyor system — illustrative image",
+    src: photo("shredder-straw-bales"),
+    cat: RECYCLING,
+    caption: "Agri-waste shredding line beside straw bales",
   },
   {
-    src: environmental,
-    cat: "Engineering & Workshop",
-    caption: "Dust collection and environmental equipment — illustrative image",
+    src: photo("bale-feeder-hopper"),
+    cat: FEEDERS,
+    caption: "Bale feeding hopper with incline conveyor",
+  },
+  { src: photo("v-roller-idlers"), cat: FABRICATION, caption: "Finished V-roller idler sets" },
+  { src: photo("chevron-belt-conveyor"), cat: CONVEYORS, caption: "Chevron belt incline conveyor" },
+  {
+    src: photo("straw-shredding-line"),
+    cat: RECYCLING,
+    caption: "Straw shredding line with overhead conveyor",
+  },
+  {
+    src: photo("v-roller-frames-fabrication"),
+    cat: FABRICATION,
+    caption: "V-roller conveyor frames under fabrication",
+  },
+  {
+    src: photo("cleated-incline-conveyor"),
+    cat: CONVEYORS,
+    caption: "Cleated incline belt conveyor",
+  },
+  { src: photo("chain-feeder-hopper"), cat: FEEDERS, caption: "Chain-driven auto feeder hopper" },
+  {
+    src: photo("shredder-blue-conveyors"),
+    cat: RECYCLING,
+    caption: "Shredder with feed and discharge conveyors",
+  },
+  {
+    src: photo("outdoor-belt-conveyor"),
+    cat: CONVEYORS,
+    caption: "Belt conveyor on V-roller idlers",
+  },
+  {
+    src: photo("incline-conveyor-cyclone"),
+    cat: CONVEYORS,
+    caption: "Incline conveyor with cyclone separator",
+  },
+  {
+    src: photo("shredder-platform"),
+    cat: RECYCLING,
+    caption: "Shredder platform with access stairs",
+  },
+  {
+    src: photo("outdoor-conveyor-installation"),
+    cat: CONVEYORS,
+    caption: "Long-span outdoor conveyor installation",
+  },
+  {
+    src: photo("hopper-incline-conveyor"),
+    cat: CONVEYORS,
+    caption: "Hopper discharge onto incline conveyor",
+  },
+  {
+    src: photo("shredder-feed-platform"),
+    cat: RECYCLING,
+    caption: "Shredder feed platform during installation",
+  },
+  {
+    src: photo("trough-conveyors-shredder"),
+    cat: RECYCLING,
+    caption: "Trough conveyors feeding a shredder",
+  },
+  {
+    src: photo("chevron-conveyor-incline"),
+    cat: CONVEYORS,
+    caption: "Chevron conveyor feeding the shredder line",
+  },
+  {
+    src: photo("belt-conveyor-straw-plant"),
+    cat: CONVEYORS,
+    caption: "Belt conveyor at a straw processing plant",
+  },
+  {
+    src: photo("shredder-trough-conveyors"),
+    cat: RECYCLING,
+    caption: "Shredding unit with blue trough conveyors",
+  },
+  {
+    src: photo("outdoor-belt-conveyor-shed"),
+    cat: CONVEYORS,
+    caption: "Outdoor belt conveyor entering the shed",
+  },
+  {
+    src: photo("cleated-incline-conveyor-side"),
+    cat: CONVEYORS,
+    caption: "Cleated incline conveyor, side view",
+  },
+  {
+    src: photo("overhead-conveyor-shredder"),
+    cat: RECYCLING,
+    caption: "Overhead conveyor above shredder base",
+  },
+  {
+    src: photo("chevron-conveyor-shredder-line"),
+    cat: RECYCLING,
+    caption: "Chevron conveyor and shredder line",
+  },
+  {
+    src: photo("factory-exterior-road"),
+    cat: FACILITY,
+    caption: "ARKIS Engineering factory entrance",
+  },
+  {
+    src: photo("iso-9001-certificate"),
+    cat: "Certification",
+    caption: "ISO 9001:2015 quality management certificate",
   },
   { src: brochure, cat: "Company Branding", caption: "ARKIS Engineering product overview" },
   { src: office, cat: "Company", caption: "Ajay Veer Singh at the ARKIS Engineering office" },
@@ -59,14 +184,14 @@ function Gallery() {
     <>
       <PageHero
         title="Engineering Gallery"
-        subtitle="Company photography, brand material, and clearly marked illustrative industrial visuals."
-        image={workshop}
+        subtitle="Real conveyors, shredding lines, feeders and fabrication work from our workshop and client sites."
+        image={photo("straw-shredding-line")}
       />
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
         <div className="grid auto-rows-[260px] gap-4 md:grid-cols-2 lg:grid-cols-3">
           {images.map((im, i) => (
             <button
-              key={im.caption}
+              key={im.src}
               onClick={() => setActive(i)}
               className={`group relative overflow-hidden text-left ${i === 0 ? "md:col-span-2 md:row-span-2" : ""}`}
               aria-label={`Open ${im.caption}`}

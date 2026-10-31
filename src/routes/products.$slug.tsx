@@ -33,18 +33,7 @@ function Detail() {
         </div>
       </div>
       <section className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:items-center">
-        <div className="relative">
-          <img
-            src={p.image}
-            alt={`${p.name} industrial illustration`}
-            width={1408}
-            height={1008}
-            className="aspect-[4/3] w-full object-cover"
-          />
-          <span className="absolute bottom-0 left-0 bg-forest px-3 py-2 text-xs font-semibold text-primary-foreground">
-            Illustrative image
-          </span>
-        </div>
+        <img src={p.image} alt={p.imageAlt} className="aspect-[4/3] w-full object-cover" />
         <div>
           <p className="text-xs font-bold uppercase tracking-[.18em] text-accent">
             Industrial Equipment

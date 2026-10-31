@@ -1,9 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Factory, Gauge, Leaf, Settings, ShieldCheck, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CtaBand, Eyebrow, ProductCard } from "@/components/arkis-sections";
+import { CtaBand, Eyebrow, MapEmbed, ProductCard } from "@/components/arkis-sections";
 import { contact, meta, products } from "@/lib/site-data";
-import hero from "@/assets/industrial-workshop.jpg";
+import hero from "@/assets/photos/recycling-plant-conveyor-line.jpg";
+import fabrication from "@/assets/photos/v-roller-frames-fabrication.jpg";
 import brochure from "@/assets/arkis-brochure.png";
 
 export const Route = createFileRoute("/")({
@@ -77,9 +78,9 @@ function Home() {
       <section className="relative isolate flex min-h-[calc(100vh-7rem)] items-end overflow-hidden bg-forest">
         <img
           src={hero}
-          alt="Illustrative industrial conveyor and fabrication workshop"
-          width={1600}
-          height={912}
+          alt="Conveyor and shredding line installed by ARKIS Engineering"
+          width={1280}
+          height={960}
           className="absolute inset-0 -z-20 h-full w-full object-cover"
         />
         <div className="absolute inset-0 -z-10 bg-forest/75" />
@@ -107,9 +108,6 @@ function Home() {
               </Button>
             </div>
           </div>
-          <p className="mt-10 text-xs uppercase tracking-[.18em] text-primary-foreground/60">
-            Illustrative industrial imagery
-          </p>
         </div>
       </section>
       <section className="mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:items-center">
@@ -195,11 +193,9 @@ function Home() {
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.2fr_.8fr] lg:items-center">
           <div className="overflow-hidden">
             <img
-              src={hero}
-              alt="Illustrative view of conveyor fabrication and machinery assembly"
+              src={fabrication}
+              alt="V-roller conveyor frames being fabricated at the ARKIS workshop"
               loading="lazy"
-              width={1600}
-              height={912}
               className="aspect-[16/9] w-full object-cover"
             />
           </div>
@@ -209,9 +205,6 @@ function Home() {
             <p className="mt-5 leading-7 text-primary-foreground/75">
               From fabrication and precision machining to machinery assembly, Arkis Engineering
               focuses on delivering practical engineering solutions for industrial requirements.
-            </p>
-            <p className="mt-5 text-xs uppercase tracking-[.14em] text-gold">
-              Illustrative industrial imagery
             </p>
           </div>
         </div>
@@ -242,20 +235,17 @@ function Home() {
             </Link>
           </Button>
         </div>
-        <a
-          href={contact.map}
-          target="_blank"
-          rel="noreferrer"
-          className="flex min-h-64 items-center justify-center border border-border bg-secondary p-8 text-center transition-colors hover:bg-muted"
-        >
-          <span>
-            <Factory className="mx-auto size-10 text-accent" />
-            <strong className="mt-4 block font-heading text-xl">Seekri Industrial Area</strong>
-            <span className="mt-2 block text-sm text-muted-foreground">
-              Open verified address in Google Maps
-            </span>
-          </span>
-        </a>
+        <div className="flex flex-col border border-border bg-secondary">
+          <MapEmbed className="min-h-72 flex-1" />
+          <a
+            href={contact.map}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center justify-center gap-2 p-4 text-sm font-semibold text-primary transition-colors hover:bg-muted"
+          >
+            <Factory className="size-4 text-accent" /> Open in Google Maps
+          </a>
+        </div>
       </section>
     </>
   );
