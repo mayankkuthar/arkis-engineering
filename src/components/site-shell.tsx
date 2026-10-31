@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowUp, Mail, MapPin, Menu, MessageCircle, Phone, X } from "lucide-react";
+import { ArrowUp, Clock, Mail, MapPin, Menu, MessageCircle, Phone, X } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import logo from "@/assets/arkis-logo.jpeg";
@@ -142,6 +142,10 @@ export function SiteShell({ children }: { children: ReactNode }) {
                 <MapPin className="mt-0.5 size-4 shrink-0" />
                 {contact.address}
               </a>
+              <p className="flex gap-2">
+                <Clock className="mt-0.5 size-4 shrink-0" />
+                {contact.hours}
+              </p>
             </div>
           </div>
         </div>

@@ -11,6 +11,8 @@ import { type ReactNode } from "react";
 import { SiteShell } from "../components/site-shell";
 
 import appCss from "../styles.css?url";
+import { localBusinessJsonLd, SITE_URL } from "@/lib/site-data";
+import ogImage from "@/assets/photos/factory-exterior.jpg";
 
 function NotFoundComponent() {
   return (
@@ -78,6 +80,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "ARKIS ENGINEERING" },
+      { property: "og:image", content: `${SITE_URL}${ogImage}` },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
@@ -93,6 +96,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: `${import.meta.env.BASE_URL}favicon.png`, type: "image/png" },
     ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(localBusinessJsonLd()) }],
   }),
   shellComponent: RootShell,
   component: RootComponent,

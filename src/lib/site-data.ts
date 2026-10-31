@@ -5,6 +5,11 @@ import strawShredderImage from "@/assets/photos/shredder-straw-bales.jpg";
 import shredderLineImage from "@/assets/photos/shredder-blue-conveyors.jpg";
 import cycloneImage from "@/assets/photos/incline-conveyor-cyclone.jpg";
 import vRollerFramesImage from "@/assets/photos/v-roller-frames-fabrication.jpg";
+import factoryImage from "@/assets/photos/factory-exterior.jpg";
+import logoImage from "@/assets/arkis-logo.jpeg";
+
+/** Public origin of the deployed site (custom domain, see public/CNAME). */
+export const SITE_URL = "https://arkisengineering.com";
 
 export const contact = {
   primaryPhone: "+91 919 404 3006",
@@ -17,6 +22,7 @@ export const contact = {
   // Exact factory location supplied by the client.
   geo: { latitude: 28.2769317, longitude: 77.2785908 },
   map: "https://maps.google.com/maps?q=28.2769317%2C77.2785908&z=17&hl=en",
+  hours: "Monday – Saturday: Open 24 hours · Sunday: Closed",
   mapEmbed: "https://maps.google.com/maps?q=28.2769317%2C77.2785908&z=17&hl=en&output=embed",
 };
 
@@ -179,3 +185,47 @@ export const meta = (title: string, description: string, path: string) => {
     links: [{ rel: "canonical", href: url }],
   };
 };
+
+/**
+ * schema.org LocalBusiness data. Google reads this to match the website to the
+ * Google Business Profile (same name, address, phone and map pin).
+ */
+export const localBusinessJsonLd = () => ({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": `${SITE_URL}/#business`,
+  name: "ARKIS ENGINEERING",
+  description:
+    "Engineering, fabrication and manufacturing company in Ballabgarh, Faridabad making belt conveyors, V-rollers, screw conveyors, debalers, auto feeders, agri-waste and e-waste recycling machines, dust collection systems and A.P.C.M. equipment.",
+  url: `${SITE_URL}/`,
+  logo: `${SITE_URL}${logoImage}`,
+  image: [`${SITE_URL}${factoryImage}`, `${SITE_URL}${beltConveyorImage}`],
+  telephone: contact.primaryPhone.replace(/\s/g, ""),
+  email: contact.email,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Plot No. 30, Harfala Road, Near Gas Company, Seekri Industrial Area, Sikri",
+    addressLocality: "Ballabgarh, Faridabad",
+    addressRegion: "Haryana",
+    postalCode: "121004",
+    addressCountry: "IN",
+  },
+  geo: { "@type": "GeoCoordinates", ...contact.geo },
+  hasMap: contact.map,
+  // Open 24 hours Monday to Saturday, closed Sunday (schema.org 24h convention).
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "00:00",
+    closes: "23:59",
+  },
+  areaServed: "IN",
+  hasCredential: {
+    "@type": "EducationalOccupationalCredential",
+    credentialCategory: "ISO 9001:2015 Quality Management Systems",
+  },
+  makesOffer: products.map((p) => ({
+    "@type": "Offer",
+    itemOffered: { "@type": "Product", name: p.name, url: `${SITE_URL}/products/${p.slug}` },
+  })),
+});

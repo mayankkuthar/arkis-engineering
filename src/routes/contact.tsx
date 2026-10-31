@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { useState, type FormEvent } from "react";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -86,6 +86,10 @@ function Contact() {
               <MapPin className="mt-1 shrink-0 text-accent" />
               <span>{contact.address}</span>
             </a>
+            <p className="flex items-start gap-4 border-b border-border pb-4">
+              <Clock className="mt-1 shrink-0 text-accent" />
+              <span>{contact.hours}</span>
+            </p>
           </div>
           <Button asChild variant="quote" size="lg" className="mt-8">
             <a href={contact.whatsapp} target="_blank" rel="noreferrer">
