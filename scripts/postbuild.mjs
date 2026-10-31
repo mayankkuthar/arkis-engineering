@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readdirSync, writeFileSync } from "node:fs";
 import { join, relative, sep } from "node:path";
 
 // Nitro's public dir holds the prerendered HTML plus the hashed client bundle.
@@ -17,8 +17,9 @@ writeFileSync(join(outDir, ".nojekyll"), "");
 console.log(`[postbuild] Wrote ${join(outDir, ".nojekyll")}`);
 
 // sitemap.xml: one entry per prerendered page, so search engines find every
-// product page. The origin comes from public/CNAME (the custom domain).
-const domain = readFileSync(join(process.cwd(), "public", "CNAME"), "utf8").trim();
+// product page. Uses the canonical www origin (the live host redirects the apex
+// domain to www); keep in sync with SITE_URL in src/lib/site-data.ts.
+const SITE_ORIGIN = "https://www.arkisengineering.com";
 const pages = [];
 const walk = (dir) => {
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
@@ -34,7 +35,7 @@ walk(outDir);
 pages.sort();
 const today = new Date().toISOString().slice(0, 10);
 const urls = pages
-  .map((p) => `  <url><loc>https://${domain}${p}</loc><lastmod>${today}</lastmod></url>`)
+  .map((p) => `  <url><loc>${SITE_ORIGIN}${p}</loc><lastmod>${today}</lastmod></url>`)
   .join("\n");
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

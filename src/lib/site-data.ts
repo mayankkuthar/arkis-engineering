@@ -8,8 +8,12 @@ import vRollerFramesImage from "@/assets/photos/v-roller-frames-fabrication.jpg"
 import factoryImage from "@/assets/photos/factory-exterior.jpg";
 import logoImage from "@/assets/arkis-logo.jpeg";
 
-/** Public origin of the deployed site (custom domain, see public/CNAME). */
-export const SITE_URL = "https://arkisengineering.com";
+/**
+ * Canonical public origin. The live host (Vercel) redirects the apex domain to
+ * www, so every absolute URL we hand to search engines uses www. Keep in sync
+ * with SITE_ORIGIN in scripts/postbuild.mjs and the Sitemap line in robots.txt.
+ */
+export const SITE_URL = "https://www.arkisengineering.com";
 
 export const contact = {
   primaryPhone: "+91 919 404 3006",
@@ -167,10 +171,10 @@ export const nav = [
 ] as const;
 
 export const meta = (title: string, description: string, path: string) => {
-  // BASE_URL carries the deployment subpath (e.g. "/arkis-engineering/") so
-  // canonical/og:url stay correct on GitHub Pages project sites.
+  // Absolute canonical/og:url on the www origin. BASE_URL carries any
+  // deployment subpath (it is "/" on the custom domain).
   const base = import.meta.env.BASE_URL.replace(/\/+$/, "");
-  const url = `${base}${path}`;
+  const url = `${SITE_URL}${base}${path}`;
 
   return {
     meta: [
